@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Marcador : MonoBehaviour
 {
+    public SerialController serialController;
+
     public Text text_resultadoP1;
     public Text text_resultadoP2;
     public Text text_ganador;
@@ -16,6 +18,7 @@ public class Marcador : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        serialController = GameObject.Find("SerialController").GetComponent<SerialController>();
         text_resultadoP1.text = "0";
         text_resultadoP2.text = "0";
 
@@ -40,6 +43,24 @@ public class Marcador : MonoBehaviour
             pelota.resetearPelota();
         }
 
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            Debug.Log("Sending C");
+            serialController.SendSerialMessage("C");
+        }
+
+        string message = serialController.ReadSerialMessage();
+
+        if (message == null)
+            return;
+
+        // Check if the message is plain data or a connect/disconnect event.
+        if (ReferenceEquals(message, SerialController.SERIAL_DEVICE_CONNECTED))
+            Debug.Log("Connection established");
+        else if (ReferenceEquals(message, SerialController.SERIAL_DEVICE_DISCONNECTED))
+            Debug.Log("Connection attempt failed or disconnection detected");
+        else
+            Debug.Log("Message arrived: " + message);
     }
 
     void OnCollisionEnter(Collision objeto)
@@ -47,6 +68,7 @@ public class Marcador : MonoBehaviour
         if (objeto.collider.tag == "porteria1")
         {
             resultadoP2++;
+            serialController.SendSerialMessage("B");
             pelota.resetearPelota();
             Invoke("moverPelota", 1.5f);
            
@@ -54,6 +76,7 @@ public class Marcador : MonoBehaviour
         else if (objeto.collider.tag == "porteria2")
         {
             resultadoP1++;
+            serialController.SendSerialMessage("A");
             pelota.resetearPelota();
             Invoke("moverPelota", 1.5f);
         }
