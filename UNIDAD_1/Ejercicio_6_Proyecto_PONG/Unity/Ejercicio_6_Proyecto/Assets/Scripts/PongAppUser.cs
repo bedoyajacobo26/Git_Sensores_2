@@ -19,14 +19,19 @@ public class PongAppUser : MonoBehaviour
     public Text text_ganador;
     int resultadoP1 = 0;
     int resultadoP2 = 0;
-
+    //JUGADORES
+    public GameObject jugador_1;
     public GameObject jugador_2;
     public float limSup = 5f;
     public float limInf = -5f;
-
-    public float valPot = 0f;
-    public float mapPot = 0f;
+    //POTENCIOMETROS
+    public float valPot1 = 0f;
+    public float mapPot1 = 0f;
+    public float valPot2 = 0f;
+    public float mapPot2 = 0f;
     float a;
+    char[] delimitadores = {','};
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -62,14 +67,19 @@ public class PongAppUser : MonoBehaviour
 
         string message = serialController.ReadSerialMessage();
 
-        if (float.TryParse(message, out a))
+        if (message == null)
         {
-            valPot = a/100;
+            return;
         }
 
-        mapPot = Map(valPot, 1, 1023, limInf, limSup);
-        Debug.Log(mapPot);
-        jugador_2.transform.position = new Vector3(jugador_2.transform.position.x, mapPot, jugador_2.transform.position.z);
+        valPot1 = (float.Parse(message.Substring(0, message.IndexOf(','))))/100;
+        valPot2 = (float.Parse(message.Substring(message.IndexOf(',') + 1)))/100;
+
+        mapPot1 = Map(valPot1, 0, 1023, limInf, limSup);
+        mapPot2 = Map(valPot2, 0, 1023, limInf, limSup);
+
+        jugador_1.transform.position = new Vector3(jugador_1.transform.position.x, mapPot1, jugador_1.transform.position.z);
+        jugador_2.transform.position = new Vector3(jugador_2.transform.position.x, mapPot2, jugador_2.transform.position.z);
 
 
         if (message == null)
@@ -81,7 +91,7 @@ public class PongAppUser : MonoBehaviour
         else if (ReferenceEquals(message, SerialController.SERIAL_DEVICE_DISCONNECTED))
             Debug.Log("Connection attempt failed or disconnection detected");
         else
-            Debug.Log("Message arrived: " + message);
+            Debug.Log("Valores potenciometroa : " + message);
 
     }
 

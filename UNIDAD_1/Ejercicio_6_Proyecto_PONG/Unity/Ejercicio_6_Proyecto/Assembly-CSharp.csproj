@@ -69,6 +69,9 @@
     <Compile Include="Assets\Ardity\Scripts\Threads\AbstractSerialThread.cs" />
     <Compile Include="Assets\Ardity\Scripts\Threads\SerialThread.cs" />
     <Compile Include="Assets\Ardity\Scripts\Threads\SerialThreadLines.cs" />
+    <Compile Include="Assets\Scripts\BinaryPongAppUser.cs" />
+    <Compile Include="Assets\Scripts\BinarySerialController.cs" />
+    <Compile Include="Assets\Scripts\BinarySerialThread.cs" />
     <Compile Include="Assets\Scripts\Jugador.cs" />
     <Compile Include="Assets\Scripts\Marcador.cs" />
     <Compile Include="Assets\Scripts\Pelota.cs" />

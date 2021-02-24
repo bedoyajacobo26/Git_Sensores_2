@@ -247,6 +247,7 @@ public abstract class AbstractSerialThread
             // this line so it eventually reaches the Message Listener.
             // Otherwise, discard the line.
             object inputMessage = ReadFromWire(serialPort);
+            
             if (inputMessage != null)
             {
                 if (inputQueue.Count < maxUnreadMessages)

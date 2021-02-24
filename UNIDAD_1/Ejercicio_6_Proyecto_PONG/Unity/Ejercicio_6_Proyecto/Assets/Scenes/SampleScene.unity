@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 31945519}
   - component: {fileID: 31945524}
   - component: {fileID: 31945523}
+  - component: {fileID: 31945525}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -215,7 +216,7 @@ Transform:
   m_Children:
   - {fileID: 1000277202}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &31945523
 MonoBehaviour:
@@ -234,11 +235,14 @@ MonoBehaviour:
   text_resultadoP1: {fileID: 1336903932}
   text_resultadoP2: {fileID: 1858503149}
   text_ganador: {fileID: 516537085}
+  jugador_1: {fileID: 1701925939}
   jugador_2: {fileID: 1520111868}
   limSup: 5
   limInf: -5
-  valPot: 0
-  mapPot: 0
+  valPot1: 0
+  mapPot1: 0
+  valPot2: 0
+  mapPot2: 0
 --- !u!54 &31945524
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -255,6 +259,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &31945525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 31945518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab5301206cbdc3a40902ce916fbabe9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BinarySerialController: {fileID: 459772575}
+  PongApp: {fileID: 31945523}
 --- !u!1 &47507576
 GameObject:
   m_ObjectHideFlags: 0
@@ -486,7 +504,7 @@ Transform:
   - {fileID: 1701925940}
   - {fileID: 1520111869}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &172502895
 GameObject:
@@ -941,7 +959,7 @@ RectTransform:
   - {fileID: 407301684}
   - {fileID: 172502896}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1026,6 +1044,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 407301683}
   m_CullTransparentMesh: 0
+--- !u!1 &459772573
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 459772574}
+  - component: {fileID: 459772575}
+  m_Layer: 0
+  m_Name: BinarySerialController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &459772574
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459772573}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &459772575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459772573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4c5744336080994d80ef819e7aaddfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portName: COM3
+  baudRate: 115200
+  messageListener: {fileID: 0}
+  reconnectionDelay: 1000
+  maxUnreadMessages: 1
 --- !u!1001 &471398499
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1035,7 +1101,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 405068, guid: a65acf0cbf56b80419f74ebf0bc845f4, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 405068, guid: a65acf0cbf56b80419f74ebf0bc845f4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1217,7 +1283,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
@@ -6873,5 +6939,5 @@ Transform:
   - {fileID: 1562557931}
   - {fileID: 47507577}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
