@@ -72,6 +72,7 @@
     <Compile Include="Assets\Scripts\BinaryPongAppUser.cs" />
     <Compile Include="Assets\Scripts\BinarySerialController.cs" />
     <Compile Include="Assets\Scripts\BinarySerialThread.cs" />
+    <Compile Include="Assets\Scripts\Config.cs" />
     <Compile Include="Assets\Scripts\Jugador.cs" />
     <Compile Include="Assets\Scripts\Marcador.cs" />
     <Compile Include="Assets\Scripts\Pelota.cs" />

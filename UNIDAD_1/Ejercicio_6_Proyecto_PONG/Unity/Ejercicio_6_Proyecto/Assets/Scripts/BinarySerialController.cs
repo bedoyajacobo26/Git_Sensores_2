@@ -7,6 +7,10 @@ using System.Threading;
 
 public class BinarySerialController : MonoBehaviour
 {
+    //CONFIG
+
+    Config DontDestroy;
+
     [Tooltip("Port name with which the SerialPort object will be created.")]
     public string portName = "COM3";
 
@@ -128,4 +132,11 @@ public class BinarySerialController : MonoBehaviour
         this.userDefinedTearDownFunction = userFunction;
     }
 
+    private void Awake()
+    {
+        DontDestroy = GameObject.Find("DontDestroy").GetComponent<Config>();
+        baudRate = int.Parse(DontDestroy.val_BResp32);
+        portName = DontDestroy.val_COMesp32;
+
+    }
 }

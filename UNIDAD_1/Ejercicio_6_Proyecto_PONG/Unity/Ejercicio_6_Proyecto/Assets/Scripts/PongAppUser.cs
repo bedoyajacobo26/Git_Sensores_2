@@ -31,6 +31,9 @@ public class PongAppUser : MonoBehaviour
     public float mapPot2 = 0f;
     float a;
     char[] delimitadores = {','};
+
+   
+
     
     // Start is called before the first frame update
     void Start()
@@ -139,7 +142,7 @@ public class PongAppUser : MonoBehaviour
             resultadoP2++;
             serialController.SendSerialMessage("B");
             resetearPelota();
-            Invoke("movimientoPelota", 1.5f);
+            //Invoke("movimientoPelota", 1.5f);
 
         }
         else if (objeto.collider.tag == "porteria2")
@@ -147,7 +150,7 @@ public class PongAppUser : MonoBehaviour
             serialController.SendSerialMessage("A");
             resultadoP1++;
             resetearPelota();
-            Invoke("movimientoPelota", 1.5f);
+            //Invoke("movimientoPelota", 1.5f);
         }
     }
 
@@ -155,4 +158,6 @@ public class PongAppUser : MonoBehaviour
     {
         return min + (input - inputMin) * (max - min) / (inputMax - inputMin);
     }
+
+    
 }

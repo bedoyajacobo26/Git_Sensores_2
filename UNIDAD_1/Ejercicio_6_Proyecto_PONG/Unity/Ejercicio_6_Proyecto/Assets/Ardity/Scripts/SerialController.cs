@@ -25,6 +25,8 @@ using System.Threading;
  */
 public class SerialController : MonoBehaviour
 {
+    Config DontDestroy;
+
     [Tooltip("Port name with which the SerialPort object will be created.")]
     public string portName = "COM3";
 
@@ -154,6 +156,14 @@ public class SerialController : MonoBehaviour
     public void SetTearDownFunction(TearDownFunction userFunction)
     {
         this.userDefinedTearDownFunction = userFunction;
+    }
+
+    private void Awake()
+    {
+        DontDestroy = GameObject.Find("DontDestroy").GetComponent<Config>();
+        baudRate = int.Parse(DontDestroy.val_BRarduino);
+        portName = DontDestroy.val_COMarduino;
+
     }
 
 }
